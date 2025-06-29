@@ -1,0 +1,15 @@
+Component,Value / Description,Qty,Notes
+ATmega328P,Microcontroller,1,Can use Arduino UNO if prototyping
+L293D,Dual H-Bridge Motor Driver,1,Controls 2 DC motors
+DC Motor,5V/6V Hobby Motor,2,For X and Y axis movement
+LDR,Light Dependent Resistor,2–4,2 for each axis if full tracking
+10kΩ Resistor,For LDR voltage divider,2–4,Matches number of LDRs
+7805 Voltage Regulator,5V output,1,To step down 9V–12V to 5V
+Capacitor,10µF Electrolytic,2,For 7805 input/output smoothing
+Crystal Oscillator,16 MHz,1,Required by ATmega328P
+Ceramic Capacitor,22pF,2,With crystal for ATmega
+Push Button,Reset button (optional),1,Connected to RESET pin
+10kΩ Resistor,Pull-up resistor for RESET,1,Optional
+Battery,9V or 12V DC,1,Power supply input
+PCB or Breadboard,Prototyping board,1,As per your setup
+Connecting Wires,Male-male / male-female,Varies,For all circuit connections
