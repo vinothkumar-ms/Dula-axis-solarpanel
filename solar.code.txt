@@ -1,0 +1,80 @@
+// Define motor control pins
+#define motorX_IN1 2
+#define motorX_IN2 3
+#define motorY_IN1 4
+#define motorY_IN2 5
+
+// Define analog input pins for LDRs
+#define LDR_X A0
+#define LDR_Y A1
+
+void setup() {
+  pinMode(motorX_IN1, OUTPUT);
+  pinMode(motorX_IN2, OUTPUT);
+  pinMode(motorY_IN1, OUTPUT);
+  pinMode(motorY_IN2, OUTPUT);
+
+  Serial.begin(9600); // For debugging
+}
+
+void loop() {
+  int ldr_x = analogRead(LDR_X);
+  int ldr_y = analogRead(LDR_Y);
+
+  Serial.print("LDR X: "); Serial.print(ldr_x);
+  Serial.print(" | LDR Y: "); Serial.println(ldr_y);
+
+  // Simple threshold difference
+  int diff_x = ldr_x - 512;
+  int diff_y = ldr_y - 512;
+
+  // Control X-axis motor
+  if (diff_x > 100) {
+    rotateMotorXForward();
+  } else if (diff_x < -100) {
+    rotateMotorXBackward();
+  } else {
+    stopMotorX();
+  }
+
+  // Control Y-axis motor
+  if (diff_y > 100) {
+    rotateMotorYForward();
+  } else if (diff_y < -100) {
+    rotateMotorYBackward();
+  } else {
+    stopMotorY();
+  }
+
+  delay(300);
+}
+
+void rotateMotorXForward() {
+  digitalWrite(motorX_IN1, HIGH);
+  digitalWrite(motorX_IN2, LOW);
+}
+
+void rotateMotorXBackward() {
+  digitalWrite(motorX_IN1, LOW);
+  digitalWrite(motorX_IN2, HIGH);
+}
+
+void stopMotorX() {
+  digitalWrite(motorX_IN1, LOW);
+  digitalWrite(motorX_IN2, LOW);
+}
+
+void rotateMotorYForward() {
+  digitalWrite(motorY_IN1, HIGH);
+  digitalWrite(motorY_IN2, LOW);
+}
+
+void rotateMotorYBackward() {
+  digitalWrite(motorY_IN1, LOW);
+  digitalWrite(motorY_IN2, HIGH);
+}
+
+void stopMotorY() {
+  digitalWrite(motorY_IN1, LOW);
+  digitalWrite(motorY_IN2, LOW);
+}
